@@ -1,7 +1,23 @@
+<% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+<% end %>
+
+
 <h1>Books</h1>
-<p>Title</p>
-<p>Body</p>
-<% @books.each do |book| %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<tbody>
+  <% @books.each do |book| %>
 <span><%= book.title %></span>
 <span><%= book.body %></span>
 
@@ -18,5 +34,28 @@
 </span>
 
 <br>
-
 <% end %>
+
+</tbody>
+</table>
+
+<h2>New book</h2>
+<form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="F5NUtIjVO0WgDRmO1uGhz+ZqW35Kd88xIxv0V3ArZd31j+rWUocDsDTx2jhZGD39Xl1KMEswBoPvX4Q0rp3Mqg==">
+
+  <div class="field">
+    <label for="book_title">Title</label>
+    <input class="book_title" type="text" name="book[title]" id="book_title">
+  </div>
+
+  <div class="field">
+    <label for="book_body">Body</label>
+    <textarea class="book_body" name="book[body]" id="book_body"></textarea>
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Create Book" data-disable-with="Create Book">
+  </div>
+</form>
+
+
+</body>
